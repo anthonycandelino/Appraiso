@@ -8,10 +8,16 @@
 import SwiftUI
 
 @main
-struct AppraisoApp: App {
+struct AppNameApp: App {
+    @AppStorage("isLoggedIn") private var isLoggedIn = false
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoggedIn {
+                ContentView()  // Show the main app after login
+            } else {
+                LoginView()    // Show login screen
+            }
         }
     }
 }
