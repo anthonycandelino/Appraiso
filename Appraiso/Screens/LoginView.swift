@@ -17,19 +17,31 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
+                Image("Rounded Icon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 120, height: 120)
+                    .padding(.top, 20)
+                Text("Appraiso")
+                    .font(.largeTitle)
+                    .bold()
+                Spacer()
+                Text("Log In")
+                    .font(.title)
+                    .bold()
                 TextField("Email", text: $email)
                     .autocapitalization(.none)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .keyboardType(.emailAddress)
-                
+
                 SecureField("Password", text: $password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                
+
                 if !errorMessage.isEmpty {
                     Text(errorMessage)
                         .foregroundColor(.red)
                 }
-                
+
                 Button("Log In") {
                     login(email: email, password: password) { result in
                         switch result {
@@ -41,8 +53,11 @@ struct LoginView: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
+
+                NavigationLink(
+                    "Create Account", destination: CreateAccountView())
                 
-                NavigationLink("Create Account", destination: CreateAccountView())
+                Spacer()
             }
             .padding()
         }

@@ -6,22 +6,53 @@
 //
 
 import FirebaseAuth
-import SwiftUI
 
 class AuthViewModel: ObservableObject {
-    @Published var user: User? = nil
     @Published var isLoggedIn: Bool = false
+    private var authListener: AuthStateDidChangeListenerHandle?
 
     init() {
-        // Listen for changes in authentication state
-        _ = Auth.auth().addStateDidChangeListener { auth, user in
+        checkAuthenticationStatus()
+    }
+
+    private func checkAuthenticationStatus() {
+        authListener = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            guard let self = self else { return }
+
             if let user = user {
-                self.user = user
-                self.isLoggedIn = true
+                // Force reload the user to ensure their account still exists
+                user.reload { error in
+                    if let error = error {
+                        print("Error reloading user: \(error.localizedDescription)")
+                        // If reload fails, sign the user out
+                        self.signOut()
+                    } else if Auth.auth().currentUser == nil {
+                        // If currentUser is nil, the user no longer exists
+                        self.signOut()
+                    } else {
+                        // User is still valid
+                        self.isLoggedIn = true
+                    }
+                }
             } else {
-                self.user = nil
+                // No user logged in
                 self.isLoggedIn = false
             }
+        }
+    }
+
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            self.isLoggedIn = false
+        } catch {
+            print("Error signing out: \(error.localizedDescription)")
+        }
+    }
+
+    deinit {
+        if let listener = authListener {
+            Auth.auth().removeStateDidChangeListener(listener)
         }
     }
 }
