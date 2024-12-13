@@ -8,34 +8,43 @@
 import SwiftUI
 
 struct LoginView: View {
-    @AppStorage("isLoggedIn") private var isLoggedIn = false
-    @State private var username = ""
+    @StateObject private var authViewModel = AuthViewModel()
+
+    @State private var email = ""
     @State private var password = ""
+    @State private var errorMessage = ""
 
     var body: some View {
         NavigationView {
-            VStack {
-                TextField("Username", text: $username)
+            VStack(spacing: 20) {
+                TextField("Email", text: $email)
+                    .autocapitalization(.none)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-
+                    .keyboardType(.emailAddress)
+                
                 SecureField("Password", text: $password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-
-                Button("Login") {
-                    isLoggedIn = true
+                
+                if !errorMessage.isEmpty {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
                 }
-                .padding()
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.accentColor)
-
+                
+                Button("Log In") {
+                    login(email: email, password: password) { result in
+                        switch result {
+                        case .success:
+                            print("User logged in successfully")
+                        case .failure(let error):
+                            errorMessage = error.localizedDescription
+                        }
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                
                 NavigationLink("Create Account", destination: CreateAccountView())
-                    .padding()
             }
-            .navigationTitle("Login")
+            .padding()
         }
     }
 }

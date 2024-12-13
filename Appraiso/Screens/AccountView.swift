@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct AccountView: View {
-    @AppStorage("isLoggedIn") private var isLoggedIn = false
-    
     var body: some View {
         VStack {
             Text("Account")
                 .font(.largeTitle)
                 .padding()
-            
-            Button("LOGOUT") {
-                isLoggedIn = false
+
+            Button("Log Out") {
+                logout { result in
+                    switch result {
+                    case .success:
+                        print("User logged out successfully")
+                    case .failure(let error):
+                        print("Failed to log out: \(error.localizedDescription)")
+                    }
+                }
             }
             .padding()
         }

@@ -8,36 +8,37 @@
 import SwiftUI
 
 struct CreateAccountView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @State private var name = ""
-    @State private var username = ""
+    @State private var email = ""
     @State private var password = ""
-    @State private var confirmPassword = ""
+    @State private var errorMessage = ""
 
     var body: some View {
-        VStack {
-            TextField("Name", text: $name)
+        VStack(spacing: 20) {
+            TextField("Email", text: $email)
+                .autocapitalization(.none)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            TextField("Username", text: $username)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
+                .keyboardType(.emailAddress)
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
 
-            SecureField("Confirm Password", text: $confirmPassword)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+            if !errorMessage.isEmpty {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+            }
 
             Button("Create Account") {
-                presentationMode.wrappedValue.dismiss()
+                createAccount(email: email, password: password) { result in
+                    switch result {
+                    case .success:
+                        print("User created successfully")
+                    case .failure(let error):
+                        errorMessage = error.localizedDescription
+                    }
+                }
             }
-            .padding()
+            .buttonStyle(.borderedProminent)
         }
-        .navigationTitle("Create Account")
+        .padding()
     }
 }
 

@@ -6,8 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BEBFB5442D0BC46F00930570 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = BEBFB5432D0BC46F00930570 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		BEBFB5462D0BC46F00930570 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = BEBFB5452D0BC46F00930570 /* FirebaseAppCheck */; };
+		BEBFB5482D0BC46F00930570 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = BEBFB5472D0BC46F00930570 /* FirebaseAppDistribution-Beta */; };
+		BEBFB54A2D0BC54100930570 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BEBFB5492D0BC54100930570 /* GoogleService-Info.plist */; };
+		BEBFB5542D0BD80000930570 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BEBFB5532D0BD80000930570 /* FirebaseAuth */; };
+		BEBFB5562D0BD82000930570 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = BEBFB5552D0BD82000930570 /* FirebaseCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		BE3D56FF2D0A7E1E00716362 /* Appraiso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appraiso.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEBFB5492D0BC54100930570 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +33,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEBFB5462D0BC46F00930570 /* FirebaseAppCheck in Frameworks */,
+				BEBFB5562D0BD82000930570 /* FirebaseCore in Frameworks */,
+				BEBFB5442D0BC46F00930570 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				BEBFB5482D0BC46F00930570 /* FirebaseAppDistribution-Beta in Frameworks */,
+				BEBFB5542D0BD80000930570 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -34,6 +49,8 @@
 			children = (
 				BE3D57012D0A7E1E00716362 /* Appraiso */,
 				BE3D57002D0A7E1E00716362 /* Products */,
+				BEBFB5492D0BC54100930570 /* GoogleService-Info.plist */,
+				BEBFB5522D0BD80000930570 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -43,6 +60,13 @@
 				BE3D56FF2D0A7E1E00716362 /* Appraiso.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BEBFB5522D0BD80000930570 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +89,11 @@
 			);
 			name = Appraiso;
 			packageProductDependencies = (
+				BEBFB5432D0BC46F00930570 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				BEBFB5452D0BC46F00930570 /* FirebaseAppCheck */,
+				BEBFB5472D0BC46F00930570 /* FirebaseAppDistribution-Beta */,
+				BEBFB5532D0BD80000930570 /* FirebaseAuth */,
+				BEBFB5552D0BD82000930570 /* FirebaseCore */,
 			);
 			productName = Appraiso;
 			productReference = BE3D56FF2D0A7E1E00716362 /* Appraiso.app */;
@@ -94,6 +123,9 @@
 			);
 			mainGroup = BE3D56F62D0A7E1E00716362;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BEBFB5422D0BC46F00930570 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BE3D57002D0A7E1E00716362 /* Products */;
 			projectDirPath = "";
@@ -109,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEBFB54A2D0BC54100930570 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +355,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BEBFB5422D0BC46F00930570 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BEBFB5432D0BC46F00930570 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEBFB5422D0BC46F00930570 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		BEBFB5452D0BC46F00930570 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEBFB5422D0BC46F00930570 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		BEBFB5472D0BC46F00930570 /* FirebaseAppDistribution-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEBFB5422D0BC46F00930570 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAppDistribution-Beta";
+		};
+		BEBFB5532D0BD80000930570 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEBFB5422D0BC46F00930570 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		BEBFB5552D0BD82000930570 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEBFB5422D0BC46F00930570 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BE3D56F72D0A7E1E00716362 /* Project object */;
 }

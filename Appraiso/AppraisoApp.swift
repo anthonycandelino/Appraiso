@@ -6,14 +6,24 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+    return true
+  }
+}
 
 @main
 struct AppNameApp: App {
-    @AppStorage("isLoggedIn") private var isLoggedIn = false
+    @StateObject private var authViewModel = AuthViewModel()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn {
+            if authViewModel.isLoggedIn {
                 ContentView()  // Show the main app after login
             } else {
                 LoginView()    // Show login screen
