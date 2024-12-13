@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEB6ACA82D0BE1FD007A523A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BEB6ACA72D0BE1FD007A523A /* .gitignore */; };
 		BEBFB5442D0BC46F00930570 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = BEBFB5432D0BC46F00930570 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		BEBFB5462D0BC46F00930570 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = BEBFB5452D0BC46F00930570 /* FirebaseAppCheck */; };
 		BEBFB5482D0BC46F00930570 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = BEBFB5472D0BC46F00930570 /* FirebaseAppDistribution-Beta */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		BE3D56FF2D0A7E1E00716362 /* Appraiso.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appraiso.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB6ACA72D0BE1FD007A523A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BEBFB5492D0BC54100930570 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,6 +49,7 @@
 		BE3D56F62D0A7E1E00716362 = {
 			isa = PBXGroup;
 			children = (
+				BEB6ACA72D0BE1FD007A523A /* .gitignore */,
 				BE3D57012D0A7E1E00716362 /* Appraiso */,
 				BE3D57002D0A7E1E00716362 /* Products */,
 				BEBFB5492D0BC54100930570 /* GoogleService-Info.plist */,
@@ -141,6 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB6ACA82D0BE1FD007A523A /* .gitignore in Resources */,
 				BEBFB54A2D0BC54100930570 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
