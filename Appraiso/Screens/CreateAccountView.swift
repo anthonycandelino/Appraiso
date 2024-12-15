@@ -19,7 +19,7 @@ struct CreateAccountView: View {
 
     // TODO make form validation for length, correct email format, password format
     var isFormValid: Bool {
-        !name.isEmpty && !email.isEmpty && !password.isEmpty && !isTermsAccepted
+        !name.isEmpty && !email.isEmpty && !password.isEmpty && isTermsAccepted
     }
 
     var body: some View {
