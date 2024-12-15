@@ -10,11 +10,17 @@ import SwiftUI
 
 struct DynamicAppleSignInButton: View {
     @Environment(\.colorScheme) private var colorScheme
+    var isAccountCreated = false
+    
+    var label : SignInWithAppleButton.Label {
+        isAccountCreated ? .signIn : .signUp
+    }
 
     var body: some View {
         VStack {
             if colorScheme == .dark {
                 SignInWithAppleButton(
+                    label,
                     onRequest: { _ in
                         print(">>> WIP")
                     },
@@ -27,6 +33,7 @@ struct DynamicAppleSignInButton: View {
                 .cornerRadius(25)
             } else {
                 SignInWithAppleButton(
+                    label,
                     onRequest: { _ in
                         print(">>> WIP")
                     },

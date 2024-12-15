@@ -10,8 +10,6 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.colorScheme) var colorScheme
-    @StateObject private var authViewModel = AuthViewModel()
 
     @State private var email = ""
     @State private var password = ""
@@ -56,7 +54,7 @@ struct LoginView: View {
             CapsuleButton(label: "Forgot Password?", buttonType: .secondary)  // TODO add forgot password logic
             Text("Or")
                 .font(.subheadline)
-            DynamicAppleSignInButton()
+            DynamicAppleSignInButton(isAccountCreated: true)
 
             Spacer()
         }
