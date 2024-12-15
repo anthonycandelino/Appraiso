@@ -5,9 +5,12 @@
 //  Created by Anthony Candelino on 2024-12-11.
 //
 
+import AuthenticationServices
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     @StateObject private var authViewModel = AuthViewModel()
 
     @State private var email = ""
@@ -15,51 +18,71 @@ struct LoginView: View {
     @State private var errorMessage = ""
 
     var body: some View {
-        NavigationView {
-            VStack(spacing: 20) {
-                Image("Rounded Icon")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 120, height: 120)
-                    .padding(.top, 20)
-                Text("Appraiso")
+        VStack(spacing: 20) {
+            Spacer()
+            Spacer()
+            Spacer()
+
+            HStack {
+                Text("Welcome back!")
                     .font(.largeTitle)
                     .bold()
                 Spacer()
-                Text("Log In")
-                    .font(.title)
-                    .bold()
-                TextField("Email", text: $email)
-                    .autocapitalization(.none)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.emailAddress)
-
-                SecureField("Password", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-
-                if !errorMessage.isEmpty {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                }
-
-                Button("Log In") {
-                    login(email: email, password: password) { result in
-                        switch result {
-                        case .success:
-                            print("User logged in successfully")
-                        case .failure(let error):
-                            errorMessage = error.localizedDescription
-                        }
-                    }
-                }
-                .buttonStyle(.borderedProminent)
-
-                NavigationLink(
-                    "Create Account", destination: CreateAccountView())
-                
-                Spacer()
             }
-            .padding()
+
+            TextInputField(
+                text: $email,
+                placeholder: "Email",
+                inputType: .email,
+                shouldValidate: true,
+                label: "Email"
+            )
+
+            TextInputField(
+                text: $password,
+                placeholder: "*********",
+                inputType: .secure,
+                shouldValidate: true,
+                label: "Password"
+            )
+            .padding(.bottom)
+
+            if !errorMessage.isEmpty {
+                Text(errorMessage)
+                    .foregroundColor(Color.red.mix(with: .black, by: 0.25))
+            }
+
+            CapsuleButton(onClick: onLogin, label: "Sign In")
+            CapsuleButton(label: "Forgot Password?", buttonType: .secondary)  // TODO add forgot password logic
+            Text("Or")
+                .font(.subheadline)
+            DynamicAppleSignInButton()
+
+            Spacer()
+        }
+        .padding()
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    dismiss()
+                }) {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.primary)
+                }
+            }
+        }
+    }
+
+    private func onLogin() {
+        login(email: email, password: password) { result in
+            switch result {
+            case .success:
+                print("User logged in successfully")
+            case .failure:
+                errorMessage = "Incorrect login credentials. Please try again."
+            }
         }
     }
 }
