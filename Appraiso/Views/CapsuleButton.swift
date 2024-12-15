@@ -21,7 +21,7 @@ struct CapsuleButton: View {
             onClick()
         } label: {
             Text(label)
-                .font(.title2)
+                .font(.title3)
                 .bold()
                 .padding(.vertical, 12)
                 .frame(maxWidth: .infinity)
