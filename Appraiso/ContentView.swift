@@ -9,26 +9,32 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
+        NavigationStack {
+            ZStack {
+                AppraisalListView()
+                VStack {
+                    Spacer()
+                    HStack {
+                        Image(systemName: "camera.viewfinder")
+                            .font(.system(size: 40))
+                            .foregroundColor(.background)
+                            .padding()
+                            .background(.accent)
+                            .clipShape(Circle())
+                            .onTapGesture {}
+                    }
                 }
-
-            CaptureView()
-                .tabItem {
-                    Label("Camera", systemImage: "camera")
+            }
+            .navigationTitle("Your Items")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: AccountView()) {
+                        Image(systemName: "person.crop.circle")
+                            .font(.system(size: 24))
+                            .foregroundColor(.primary)
+                    }
                 }
-
-            HistoryView()
-                .tabItem {
-                    Label("History", systemImage: "clock")
-                }
-
-            AccountView()
-                .tabItem {
-                    Label("Account", systemImage: "person")
-                }
+            }
         }
     }
 }
